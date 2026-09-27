@@ -1,6 +1,6 @@
-# AnomalyEngine — Détection d'Anomalies & Optimisation P&L
+# AnomalyEngine — Détection d'anomalies et arbitrage financier
 
-**AnomalyEngine** est une plateforme décisionnelle multi-domaines (Fintech, IoT, SaaS) qui transforme les scores de risque ML en **décisions financières optimales**.
+**AnomalyEngine** est une plateforme décisionnelle multi-domaines (Fintech, IoT, SaaS), un modèle de détection d'anomalies orienté sur l'optimisation financière du seuil de décision (arbitrage fausses alertes vs anomalies manquées).
 
 L'application arbitre le seuil de décision pour minimiser le coût global d'exploitation (**Faux Négatifs vs Faux Positifs**) et rend chaque alerte actionnable grâce aux explications **SHAP**.
 
@@ -8,10 +8,10 @@ L'application arbitre le seuil de décision pour minimiser le coût global d'exp
 
 ## 🎯 Valeur Métier & Fonctionnalités
 
-- **Optimisation Financière (P&L) :** Détermination automatique du seuil de décision optimal selon une matrice de coûts personnalisée (`€/FN` vs `€/FP`).
-- **Benchmark de Modèles :** Comparaison entre une approche supervisée (*XGBoost*) et non supervisée (*Isolation Forest*).
-- **Explicabilité Avancée (SHAP) :** Analyse globale (Bar plot & Beeswarm) et explications locales par échantillon (Waterfall plots pour cas sains vs anormaux).
-- **Console Opérationnelle :** File d'attente dynamique triée par niveau de risque pour les équipes métier.
+- **Feature Engineering & Prétraitement** : Calcul de métriques glissantes, de volatilité et d'écarts aux comportements nominaux, adaptées à la détection de ruptures de comportement.
+- **Modélisation & Benchmarking** : Alignement du seuil de probabilité sur le coût réel d'un Faux Négatif (client perdu) vs Faux Positif (campagne inutile).
+- **Explicabilité globale & locale** : Analyse fine des facteurs déclencheurs d'alertes via SHAP values (Beeswarm plot global et Waterfall plots comparatifs sur cas sains vs anormaux).
+- **Arbitrage coût/seuil** : Simulation interactive recherchant le seuil de probabilité optimal minimisant la matrice de coûts métier pour maximiser le gain net.
 
 ---
 
