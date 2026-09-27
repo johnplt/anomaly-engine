@@ -1,26 +1,23 @@
-FROM ghcr.io/astral-sh/uv:latest AS uv_bin
-FROM python:3.11-slim
+FROM python:3.12-slim
 
-COPY --from=uv_bin /uv /uvx /bin/
+# Copie des exécutables uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    PORT=8501
-
-# Installation de libgomp1 (pour XGBoost / OpenMP)
+# Dependency système requise pour LightGBM / XGBoost
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY pyproject.toml uv.lock* requirements.txt* ./
-RUN --mount=type=cache,target=/root/.cache/uv \
-    if [ -f requirements.txt ]; then uv pip install --system -r requirements.txt; \
-    else uv pip install --system -r pyproject.toml; fi
+# Copie des fichiers de dépendances
+COPY pyproject.toml uv.lock ./
 
+# Installation propre via le lockfile
+RUN uv sync --frozen --no-cache
+
+# Copie du reste du code
 COPY . .
 
-EXPOSE 8501
-
-CMD ["sh", "-c", "streamlit run app.py --server.port=${PORT:-8501} --server.address=0.0.0.0"]
+# Exécution directe via le venv créé par uv
+CMD [".venv/bin/streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
