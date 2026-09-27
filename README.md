@@ -6,7 +6,7 @@ L'application arbitre le seuil de décision pour minimiser le coût global d'exp
 
 ---
 
-## 🎯 Valeur Métier & Fonctionnalités
+## Valeur métier et fonctionnalités
 
 - **Feature Engineering & Prétraitement** : Calcul de métriques glissantes, de volatilité et d'écarts aux comportements nominaux, adaptées à la détection de ruptures de comportement.
 - **Modélisation & Benchmarking** : Alignement du seuil de probabilité sur le coût réel d'un Faux Négatif (client perdu) vs Faux Positif (campagne inutile).
@@ -15,7 +15,7 @@ L'application arbitre le seuil de décision pour minimiser le coût global d'exp
 
 ---
 
-## 🛠️ Architecture du Projet
+## Architecture du Projet
 
 ```text
 ├── .github/
